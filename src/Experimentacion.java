@@ -3,7 +3,7 @@ public class Experimentacion {
         int cantEvaluacionesFijas = 10;
 
         // Para la tabla
-        System.out.println("Estudiantes | T. Prom. | T. Prom. Opt. | T. Varianza | T. Máximo");
+        System.out.println("Estudiantes | T. Prom. | T. Prom. Opt. | T. Eval. | T. Eval. Opt. | T. Varianza | T. Máximo");
 
         for (int i = 1; i <= 100; i++) {
             int cantEstudiantes = 100 * i;
@@ -23,6 +23,18 @@ public class Experimentacion {
             long tiempoFin2 = System.nanoTime();
             long duracion2 = tiempoFin2 - tiempoInicio2;
 
+            //Mide el tiempo de calcularPromedioEvaluaciones()
+            long tiempoInicio5 = System.nanoTime();
+            analizador.calcularPromedioEvaluaciones(new String[0]); // El parámetro no afecta la medición del tiempo
+            long tiempoFin5 = System.nanoTime();
+            long duracion5 = tiempoFin5 - tiempoInicio5;
+
+            // Mide el tiempo de calcularPromedioEvaluacionesOptimizado()
+            long tiempoInicio6 = System.nanoTime();
+            analizador.calcularPromedioEvaluacionesOptimizado();
+            long tiempoFin6 = System.nanoTime();
+            long duracion6 = tiempoFin6 - tiempoInicio6;
+
             // Mide el tiempo de calcularVarianzaEstudiantes()
             long tiempoInicio3 = System.nanoTime();
             analizador.calcularVarianzaEstudiantes();
@@ -36,7 +48,7 @@ public class Experimentacion {
             long duracion4 = tiempoFin4 - tiempoInicio4;
 
             // Imprime los resultados
-            System.out.println(cantEstudiantes + " | " + duracion1 + " | " + duracion2 + " | " + duracion3 + " | " + duracion4);
+            System.out.println(cantEstudiantes + " | " + duracion1 + " | " + duracion2 + " | " + duracion5 + " | " + duracion6 + " | " + duracion3 + " | " + duracion4);
         }
     }
 }
